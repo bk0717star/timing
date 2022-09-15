@@ -1,0 +1,30 @@
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    # 数据库名: scheduled
+    url: jdbc:h2:~/scheduledTest
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+    # 这些在SpringBoot2.5.0之后被优化
+#    schema: classpath:init.sql  # 表初始化语句
+#    data: classpath:data.sql    # 数据初始化
+#    initialization-mode: always # 始终执行初始化(有三种模式)
+  # 这是2.5.0之后初始化数据库的方式
+  sql:
+    init:
+      schema-locations: classpath:init.sql  # 表初始化语句
+      data-locations: classpath:data.sql  # 数据初始化
+      mode: always    # 始终执行初始化(有三种模式)
+  h2:
+    console:
+      path: /scheduled # 控制台地址
+      enabled: true
+
+mybatis:
+  #  mapper-locations: classpath:mapper/**.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
